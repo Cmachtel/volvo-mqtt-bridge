@@ -1,0 +1,11 @@
+{
+  "client_id": "YOUR_VOLVO_CLIENT_ID",
+  "client_secret": "YOUR_VOLVO_CLIENT_SECRET",
+  "vcc_api_key": "YOUR_VOLVO_VCC_API_KEY",
+  "vin": "YOUR_VEHICLE_VIN_NUMBER",
+  "mqtt_broker": "192.168.1.100",
+  "mqtt_port": 1883,
+  "mqtt_user": "mqtt_username",
+  "mqtt_password": "mqtt_password",
+  "polling_interval": 300
+}
