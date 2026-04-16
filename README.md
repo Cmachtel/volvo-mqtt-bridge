@@ -1,3 +1,7 @@
+![Python](https://shields.io)
+![Docker](https://shields.io)
+![MQTT](https://shields.io)
+
 Volvo to MQTT Bridge (2025+ Google Models)
 
 English 🇬🇧
