@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  volvo-mqtt-bridge:
+    image: cmachtel/volvo-mqtt-bridge:latest
+    container_name: volvo-bridge
+    restart: unless-stopped
+    network_mode: bridge
+    volumes:
+      - ./config.json:/app/config.json
+      - ./tokens.json:/app/tokens.json
+    environment:
+      - TZ=Europe/Luxembourg # Réglez votre fuseau horaire ici
+      - PYTHONUNBUFFERED=1   # Pour voir les logs en temps réel
