@@ -66,6 +66,12 @@ Terms of Services URL	http://localhost:8080/terms (Can be a dummy URL for person
         Utilisez le code avec précaution.
     First Run: Check the logs (docker logs -f volvo-bridge). The script will provide a URL to log in to your Volvo account for the initial authorization.
 
+    Deployment with Docker Compose
+
+    Place your config.json and an empty tokens.json in the project folder.
+    Run: docker-compose up -d
+    Check logs for the Volvo login URL: docker logs -f volvo-bridge
+
 Français 🇫🇷
 Ce conteneur Docker basé sur Python fait le pont entre l'API Volvo Connected Vehicle et votre broker MQTT local. Il est spécifiquement testé et optimisé pour les modèles Volvo (2025 et plus récents) équipés du système Google intégré (AAOS).
 Fonctionnalités
