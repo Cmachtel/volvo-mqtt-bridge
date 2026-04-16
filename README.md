@@ -67,7 +67,7 @@ Terms of Services URL	http://localhost:8080/terms (Can be a dummy URL for person
     First Run: Check the logs (docker logs -f volvo-bridge). The script will provide a URL to log in to your Volvo account for the initial authorization.
 
     Deployment with Docker Compose
-
+    You can find the official Docker image at: hub.docker.com/r/cmachtel/volvo-mqtt-bridge
     Place your config.json and an empty tokens.json in the project folder.
     Run: docker-compose up -d
     Check logs for the Volvo login URL: docker logs -f volvo-bridge
