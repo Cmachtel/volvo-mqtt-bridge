@@ -31,7 +31,7 @@ Redirect URIs	http://localhost:8080/callback (Required for the login process)
 Purpose	Personal Home Automation
 Terms of Services URL	http://localhost:8080/terms (Can be a dummy URL for personal use)
 
-        Copy your Client ID and Client Secret.
+    Copy your Client ID and Client Secret.
     VCC API Key: In your Volvo dashboard, copie the VCC API Key (Primary).
     MQTT Broker: You need an IP address, port, and (optional) credentials for your broker (e.g., Mosquitto).
 
