@@ -51,7 +51,6 @@ def exchange_code(code, code_verifier):
     data = {
         'grant_type': 'authorization_code',
         'code': code.strip(), 
-        'code': code,
         'redirect_uri': 'https://volvo-service.local',
         'code_verifier': code_verifier,
         'client_id': config['client_id'],
@@ -114,7 +113,7 @@ def fetch_vehicle_data(vin):
         'authorization': f'Bearer {token}'
     }
     data = {}
-    base_url = f'https://api.volvocars.com/connected-vehicle/v2/vehicles/{vin}'
+    base_url = f'https://api.volvocars.com/extended-vehicle/v1/vehicles/{vin}'
 
     # Liste complète des points d'accès basés sur vos scopes
     endpoints = {
@@ -122,23 +121,10 @@ def fetch_vehicle_data(vin):
         'windows': '/windows',
         'tyres': '/tyres',
         'engine': '/engine-status',
-        'odometer': '/odometer',
-        'fuel': '/fuel',
-        'brakes': '/brakes',
         'warnings': '/warnings',
-        'diagnostics': '/diagnostics',
+        'diagnostics': '/diagnostics',  # Contient l'odomètre et les fluides de frein en V2
         'commands': '/commands',
-        'location': '/location',
-        'environment': '/environment',
-        'statistics': '/statistics',  # Très probable pour le range essence
-        'trips': '/trips' 
-    }
-        # Ajoute ces lignes dans ta boucle d'endpoints ou à la fin
-    additional_endpoints = {
-        'location': '/location',
-        'statistics': '/statistics',
-        'connectivity': '/connectivity-status',
-        'environment': '/environment'
+        'trips': '/trips'
     }
 
     for key, path in additional_endpoints.items():
