@@ -127,14 +127,6 @@ def fetch_vehicle_data(vin):
         'trips': '/trips'
     }
 
-    for key, path in additional_endpoints.items():
-        try:
-            r = requests.get(f"{base_url}{path}", headers=headers)
-            if r.status_code == 200:
-                data[key] = r.json().get('data', {})
-                print(f"DEBUG {key.upper()}: {data[key]}", flush=True)
-        except Exception: pass
-
      # Récupération des infos de base
     try:
         r = requests.get(base_url, headers=headers)
@@ -155,7 +147,7 @@ def fetch_vehicle_data(vin):
     
 
      # Appel spécifique pour la LOCALISATION (en v1 selon ta doc)
-    location_url = f'https://api.volvocars.com/location/v1/vehicles/{vin}/location'
+    location_url = f'https://api.volvocars.com/extended-vehicle/v1/vehicles/{vin}/location'
     try:
         r_loc = requests.get(location_url, headers=headers)
         if r_loc.status_code == 200:
