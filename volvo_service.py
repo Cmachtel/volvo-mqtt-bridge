@@ -28,18 +28,11 @@ def start_oauth():
         'response_type': 'code',
         'client_id': config['client_id'],
         'redirect_uri': 'https://volvo-service.local',  # dummy redirect URI
-        'scope': (
-            'openid '
-            'conve:battery_charge_level conve:vehicle_relation conve:engine_status '
-            'conve:doors_status conve:lock_status conve:odometer_status '
-            'conve:tyre_status conve:windows_status conve:fuel_status '
-            'energy:state:read location:read'
-        ),
         'state': 'state123',
         'code_challenge': code_challenge,
         'code_challenge_method': 'S256'
     }
-    url = 'https://volvoid.eu.volvocars.com/as/authorization.oauth2'
+    url = 'https://auth.volvocars.com/realms/volvocars/protocol/openid-connect/auth'
     full_url = requests.Request('GET', url, params=params).prepare().url
     print(f"Visit this URL to authenticate: {full_url}")
     print("After login and OTP validation, you will be redirected to http://localhost?code=... Copy the 'code' parameter.")
@@ -70,12 +63,16 @@ def exchange_code(code, code_verifier):
         'Content-Type': 'application/x-www-form-urlencoded'
     }
     
+  //  response = requests.post(
+  //      'https://volvoid.eu.volvocars.com/as/token.oauth2', 
+  //      data=data, 
+  //      headers=headers
+  //  )
     response = requests.post(
-        'https://volvoid.eu.volvocars.com/as/token.oauth2', 
+        'https://auth.volvocars.com/realms/volvocars/protocol/openid-connect/token', 
         data=data, 
         headers=headers
     )
-    
     response.raise_for_status()
     tokens = response.json()
     tokens['expires_at'] = time.time() + tokens['expires_in']
@@ -93,7 +90,7 @@ def refresh_token():
         'refresh_token': tokens['refresh_token']
     }
     auth = (config['client_id'], config['client_secret'])
-    response = requests.post('https://volvoid.eu.volvocars.com/as/token.oauth2', data=data, auth=auth)
+    response = requests.post('https://auth.volvocars.com/realms/volvocars/protocol/openid-connect/token', data=data, auth=auth)
     response.raise_for_status()
     new_tokens = response.json()
     new_tokens['expires_at'] = time.time() + new_tokens['expires_in']
